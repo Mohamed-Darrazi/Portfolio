@@ -1,18 +1,20 @@
 import type { Metadata } from "next";
-import { Inter, Space_Grotesk } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 
-const spaceGrotesk = Space_Grotesk({
+// Polices auto-hébergées (fichiers dans app/fonts/) : le build ne dépend
+// plus des serveurs de Google Fonts, qui peuvent tomber en panne.
+const spaceGrotesk = localFont({
+  src: "./fonts/SpaceGrotesk-Variable-latin.woff2",
+  weight: "300 700",
   variable: "--font-space-grotesk",
-  subsets: ["latin", "latin-ext"],
-  weight: ["400", "500", "600", "700"],
   display: "swap",
 });
 
-const inter = Inter({
+const inter = localFont({
+  src: "./fonts/Inter-Variable-latin.woff2",
+  weight: "100 900",
   variable: "--font-inter",
-  subsets: ["latin", "latin-ext"],
-  weight: ["400", "500"],
   display: "swap",
 });
 
