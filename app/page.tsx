@@ -12,8 +12,7 @@ const LINKS = {
   linkedin: "https://www.linkedin.com/in/mohamed-darrazi-20b901333/",
 };
 
-// Remplace FORM_ID par l'identifiant que Formspree te donnera.
-const FORMSPREE_ENDPOINT = "https://formspree.io/f/FORM_ID";
+const FORMSPREE_ENDPOINT = "https://formspree.io/f/myegwejb";
 
 const SKILLS = [
   { group: "Langages", items: ["C#", "PHP", "Java", "Python", "JavaScript", "TypeScript"] },
