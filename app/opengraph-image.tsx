@@ -3,9 +3,11 @@ import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 
 export const alt = "Mohamed Darrazi — Développeur · BTS SIO SLAM";
+// Rendu en 2x (ratio 1200x630 conservé) : les réseaux sociaux recompressent
+// les aperçus, une source plus grande et des textes plus gros restent nets.
 export const size = {
-  width: 1200,
-  height: 630,
+  width: 2400,
+  height: 1260,
 };
 export const contentType = "image/png";
 
@@ -36,7 +38,7 @@ export default async function Image() {
           style={{
             fontFamily: "Space Grotesk",
             fontWeight: 700,
-            fontSize: 96,
+            fontSize: 224,
             color: "#ece9f5",
             letterSpacing: "-0.03em",
           }}
@@ -45,10 +47,10 @@ export default async function Image() {
         </div>
         <div
           style={{
-            marginTop: 28,
+            marginTop: 64,
             fontFamily: "Space Grotesk",
             fontWeight: 500,
-            fontSize: 38,
+            fontSize: 92,
             color: "#b9a6ff",
           }}
         >
