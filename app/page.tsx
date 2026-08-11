@@ -407,8 +407,6 @@ function Footer() {
 function StyleTag() {
   return (
     <style jsx global>{`
-      @import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500&display=swap");
-
       :root {
         --bg: #0a0712;
         --bg-soft: #130d21;
@@ -432,7 +430,7 @@ function StyleTag() {
       body {
         background: var(--bg);
         color: var(--text);
-        font-family: "Inter", system-ui, sans-serif;
+        font-family: var(--font-inter), system-ui, sans-serif;
         -webkit-font-smoothing: antialiased;
       }
 
@@ -559,7 +557,7 @@ function StyleTag() {
         z-index: 10;
       }
       .nav-mark {
-        font-family: "Space Grotesk", sans-serif;
+        font-family: var(--font-space-grotesk), sans-serif;
         font-weight: 600;
         font-size: 15px;
         letter-spacing: -0.01em;
@@ -582,7 +580,7 @@ function StyleTag() {
         padding: 120px 0 90px;
       }
       .hero-eyebrow {
-        font-family: "Space Grotesk", sans-serif;
+        font-family: var(--font-space-grotesk), sans-serif;
         color: var(--lav);
         font-size: 14px;
         letter-spacing: 0.28em;
@@ -592,7 +590,7 @@ function StyleTag() {
         animation: fadeUp 0.7s ease forwards 0.1s;
       }
       .hero-name {
-        font-family: "Space Grotesk", sans-serif;
+        font-family: var(--font-space-grotesk), sans-serif;
         font-weight: 700;
         font-size: clamp(48px, 10vw, 104px);
         line-height: 1;
@@ -621,7 +619,7 @@ function StyleTag() {
       }
       .hero-tag {
         margin-top: 8px;
-        font-family: "Space Grotesk", sans-serif;
+        font-family: var(--font-space-grotesk), sans-serif;
         font-size: 14px;
         color: var(--text-dim);
         letter-spacing: 0.04em;
@@ -648,7 +646,7 @@ function StyleTag() {
       }
 
       .btn {
-        font-family: "Space Grotesk", sans-serif;
+        font-family: var(--font-space-grotesk), sans-serif;
         font-size: 14px;
         font-weight: 500;
         padding: 13px 26px;
@@ -699,13 +697,13 @@ function StyleTag() {
         margin-bottom: 40px;
       }
       .section-index {
-        font-family: "Space Grotesk", sans-serif;
+        font-family: var(--font-space-grotesk), sans-serif;
         color: var(--lav);
         font-size: 15px;
         font-weight: 500;
       }
       .section-title {
-        font-family: "Space Grotesk", sans-serif;
+        font-family: var(--font-space-grotesk), sans-serif;
         font-weight: 600;
         font-size: clamp(30px, 5vw, 46px);
         letter-spacing: -0.02em;
@@ -729,7 +727,7 @@ function StyleTag() {
         gap: 30px;
       }
       .skill-group {
-        font-family: "Space Grotesk", sans-serif;
+        font-family: var(--font-space-grotesk), sans-serif;
         font-size: 14px;
         font-weight: 600;
         color: var(--lav);
@@ -791,13 +789,13 @@ function StyleTag() {
         margin-bottom: 14px;
       }
       .project-name {
-        font-family: "Space Grotesk", sans-serif;
+        font-family: var(--font-space-grotesk), sans-serif;
         font-weight: 600;
         font-size: 22px;
         letter-spacing: -0.01em;
       }
       .project-link {
-        font-family: "Space Grotesk", sans-serif;
+        font-family: var(--font-space-grotesk), sans-serif;
         font-size: 14px;
         color: var(--lav);
         text-decoration: none;
@@ -807,7 +805,7 @@ function StyleTag() {
         text-decoration: underline;
       }
       .project-private {
-        font-family: "Space Grotesk", sans-serif;
+        font-family: var(--font-space-grotesk), sans-serif;
         font-size: 12px;
         color: var(--text-dim);
         border: 1px solid var(--line);
@@ -829,7 +827,7 @@ function StyleTag() {
         gap: 9px;
       }
       .stack-tag {
-        font-family: "Space Grotesk", sans-serif;
+        font-family: var(--font-space-grotesk), sans-serif;
         font-size: 12px;
         color: var(--lav);
         background: rgba(185, 166, 255, 0.07);
@@ -854,7 +852,7 @@ function StyleTag() {
         gap: 7px;
       }
       .field-label {
-        font-family: "Space Grotesk", sans-serif;
+        font-family: var(--font-space-grotesk), sans-serif;
         font-size: 13px;
         color: var(--text-dim);
       }
@@ -864,7 +862,7 @@ function StyleTag() {
         border-radius: 10px;
         padding: 12px 14px;
         color: var(--text);
-        font-family: "Inter", sans-serif;
+        font-family: var(--font-inter), sans-serif;
         font-size: 15px;
         transition: border-color 0.25s;
       }
@@ -880,7 +878,7 @@ function StyleTag() {
         border: none;
       }
       .form-success {
-        font-family: "Space Grotesk", sans-serif;
+        font-family: var(--font-space-grotesk), sans-serif;
         color: var(--lav);
         font-size: 16px;
         padding: 20px 0;
@@ -896,7 +894,7 @@ function StyleTag() {
       }
       .contact-link {
         display: block;
-        font-family: "Space Grotesk", sans-serif;
+        font-family: var(--font-space-grotesk), sans-serif;
         color: var(--text);
         text-decoration: none;
         font-size: 17px;
@@ -916,7 +914,7 @@ function StyleTag() {
         border-top: 1px solid var(--line);
         color: var(--text-dim);
         font-size: 13px;
-        font-family: "Space Grotesk", sans-serif;
+        font-family: var(--font-space-grotesk), sans-serif;
       }
 
       @media (max-width: 680px) {
