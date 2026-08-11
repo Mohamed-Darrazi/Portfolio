@@ -47,11 +47,12 @@ export default async function Image() {
         </div>
         <div
           style={{
-            marginTop: 64,
+            marginTop: 56,
             fontFamily: "Space Grotesk",
-            fontWeight: 500,
-            fontSize: 92,
-            color: "#b9a6ff",
+            fontWeight: 700,
+            fontSize: 112,
+            color: "#d6cbff",
+            letterSpacing: "0.02em",
           }}
         >
           Développeur · BTS SIO SLAM
