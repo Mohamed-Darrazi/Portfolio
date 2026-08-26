@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import Atmosphere from "@/app/components/Atmosphere";
+import SiteNav from "@/app/components/SiteNav";
+import Footer from "@/app/components/Footer";
 
 // Polices auto-hébergées (fichiers dans app/fonts/) : le build ne dépend
 // plus des serveurs de Google Fonts, qui peuvent tomber en panne.
@@ -24,7 +27,12 @@ const siteDescription =
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://mohameddarrazi.dev"),
-  title: siteTitle,
+  // `template` : chaque page définit son propre titre court, et Next.js
+  // y ajoute automatiquement le nom du site. Ex. « Projets — Mohamed Darrazi ».
+  title: {
+    default: siteTitle,
+    template: "%s — Mohamed Darrazi",
+  },
   description: siteDescription,
   openGraph: {
     title: siteTitle,
@@ -41,13 +49,24 @@ export const metadata: Metadata = {
   },
 };
 
+// Coquille commune à toutes les pages : le décor animé, la barre de
+// navigation et le pied de page vivent ici. En App Router, le layout n'est
+// pas remonté d'une page à l'autre — le halo garde donc sa position et les
+// animations de fond ne repartent pas de zéro à chaque navigation.
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="fr"
       className={`${spaceGrotesk.variable} ${inter.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <Atmosphere />
+        <div className="page">
+          <SiteNav />
+          <main className="page-main">{children}</main>
+          <Footer />
+        </div>
+      </body>
     </html>
   );
 }
