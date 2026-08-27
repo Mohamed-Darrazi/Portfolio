@@ -1091,3 +1091,92 @@ body {
     transform: none;
   }
 }
+
+/* --- Dossier de projet (PDF) -----------------------------------
+   Même vocabulaire visuel que .project-card : fond --bg-soft,
+   bordure --line, rayon 16px. Les boutons réutilisent les classes
+   .btn / .btn-primary / .btn-ghost déjà definies plus haut. */
+.doc-card {
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--bg-soft);
+  overflow: hidden;
+  transition: border-color 0.3s;
+}
+.doc-card:hover {
+  border-color: var(--lav-soft);
+}
+.doc-head {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 24px 26px 0;
+}
+.doc-badge {
+  flex-shrink: 0;
+  padding: 8px 12px;
+  border: 1px solid var(--lav-soft);
+  border-radius: 10px;
+  background: rgba(185, 166, 255, 0.07);
+  font-family: var(--font-space-grotesk), sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--lav);
+}
+.doc-name {
+  font-family: var(--font-space-grotesk), sans-serif;
+  font-weight: 600;
+  font-size: 17px;
+  color: var(--text);
+}
+.doc-sub {
+  margin-top: 4px;
+  font-size: 13px;
+  color: var(--text-dim);
+  word-break: break-word;
+}
+.doc-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 22px 26px 24px;
+}
+/* « Ouvrir le document » ne sert que sur mobile, où l'aperçu intégré
+   n'est pas fiable. Masqué par défaut, révélé dans la media query. */
+.doc-open {
+  display: none;
+}
+.doc-preview {
+  border-top: 1px solid var(--line);
+  background: var(--bg);
+}
+.doc-preview iframe {
+  display: block;
+  width: 100%;
+  height: min(78vh, 760px);
+  border: 0;
+}
+
+@media (max-width: 680px) {
+  /* Les navigateurs mobiles ne rendent pas correctement un PDF dans une
+     iframe : on masque l'aperçu et on propose l'ouverture directe. */
+  .doc-toggle,
+  .doc-preview {
+    display: none;
+  }
+  .doc-open {
+    display: inline-block;
+  }
+  .doc-head {
+    padding: 20px 20px 0;
+  }
+  .doc-actions {
+    padding: 18px 20px 20px;
+  }
+  /* Cibles tactiles pleine largeur. */
+  .doc-actions .btn {
+    width: 100%;
+    text-align: center;
+  }
+}

@@ -4,7 +4,9 @@ import { notFound } from "next/navigation";
 import Reveal from "@/app/components/Reveal";
 import SectionTitle from "@/app/components/SectionTitle";
 import Placeholder from "@/app/components/Placeholder";
+import ProjectDocument from "@/app/components/ProjectDocument";
 import { PROJECTS, getProject } from "@/app/lib/projects";
+import { getDocumentInfo } from "@/app/lib/documents";
 
 // Génère à la construction du site une page statique par projet.
 // Ajouter un projet dans app/lib/projects.ts suffit : sa page apparaît seule.
@@ -30,6 +32,11 @@ export default async function ProjetPage({
 
   // Slug inconnu : on renvoie la page 404 de Next.js plutôt qu'une erreur.
   if (!project) notFound();
+
+  // Résolu ici, côté serveur, au moment du build : on vérifie que le PDF
+  // existe vraiment dans public/projets/ et on relève son poids.
+  // `null` = pas de document, ou fichier introuvable.
+  const projectDoc = getDocumentInfo(project.pdf);
 
   return (
     <>
@@ -126,6 +133,18 @@ export default async function ProjetPage({
           )}
         </section>
       </Reveal>
+
+      {/* Section entièrement conditionnelle : sans document associé (ou si le
+          fichier est introuvable dans public/projets/), rien n'est rendu du
+          tout — ni titre, ni bouton. */}
+      {projectDoc ? (
+        <Reveal>
+          <section className="section">
+            <SectionTitle index="04" title="Dossier de projet" />
+            <ProjectDocument document={projectDoc} projectName={project.name} />
+          </section>
+        </Reveal>
+      ) : null}
     </>
   );
 }

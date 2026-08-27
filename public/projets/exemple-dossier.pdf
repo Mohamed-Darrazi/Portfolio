@@ -1,0 +1,93 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R 5 0 R] /Count 2 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 7 0 R >> >> /Contents 4 0 R >>
+endobj
+4 0 obj
+<< /Length 979 >>
+stream
+BT
+/F1 18 Tf
+50 780 Td
+(Dossier de projet - Exemple) Tj
+ET
+BT
+/F1 11 Tf
+50 740 Td
+16 TL
+(Ce document est un fichier de demonstration.) Tj T*
+(Il ne contient aucune information reelle.) Tj T*
+() Tj T*
+(Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do) Tj T*
+(eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut) Tj T*
+(enim ad minim veniam, quis nostrud exercitation ullamco laboris) Tj T*
+(nisi ut aliquip ex ea commodo consequat.) Tj T*
+() Tj T*
+(Duis aute irure dolor in reprehenderit in voluptate velit esse) Tj T*
+(cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat) Tj T*
+(cupidatat non proident, sunt in culpa qui officia deserunt) Tj T*
+(mollit anim id est laborum.) Tj T*
+() Tj T*
+(Sed ut perspiciatis unde omnis iste natus error sit voluptatem) Tj T*
+(accusantium doloremque laudantium, totam rem aperiam, eaque ipsa) Tj T*
+(quae ab illo inventore veritatis et quasi architecto beatae vitae) Tj T*
+(dicta sunt explicabo.) Tj T*
+ET
+endstream
+endobj
+5 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 7 0 R >> >> /Contents 6 0 R >>
+endobj
+6 0 obj
+<< /Length 779 >>
+stream
+BT
+/F1 18 Tf
+50 780 Td
+(Page 2 - Lorem ipsum) Tj
+ET
+BT
+/F1 11 Tf
+50 740 Td
+16 TL
+(Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit) Tj T*
+(aut fugit, sed quia consequuntur magni dolores eos qui ratione) Tj T*
+(voluptatem sequi nesciunt.) Tj T*
+() Tj T*
+(Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet,) Tj T*
+(consectetur, adipisci velit, sed quia non numquam eius modi) Tj T*
+(tempora incidunt ut labore et dolore magnam aliquam quaerat) Tj T*
+(voluptatem.) Tj T*
+() Tj T*
+(Ut enim ad minima veniam, quis nostrum exercitationem ullam) Tj T*
+(corporis suscipit laboriosam, nisi ut aliquid ex ea commodi) Tj T*
+(consequatur.) Tj T*
+() Tj T*
+(Cette seconde page permet de verifier que la visionneuse) Tj T*
+(integree defile correctement.) Tj T*
+ET
+endstream
+endobj
+7 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>
+endobj
+xref
+0 8
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000121 00000 n 
+0000000247 00000 n 
+0000001276 00000 n 
+0000001402 00000 n 
+0000002231 00000 n 
+trailer
+<< /Size 8 /Root 1 0 R >>
+startxref
+2328
+%%EOF
