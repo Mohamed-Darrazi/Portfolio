@@ -64,9 +64,21 @@ export const PROJECTS: Project[] = [
     stack: ["C#", "ASP.NET Core", "Entity Framework", "SQL Server"],
     link: null,
     period: null,
-    context: null,
-    features: null,
-    learnings: null,
+    // TODO Mohamed : contenu de départ à relire et personnaliser avant l'oral E4 — vérifier que chaque fonctionnalité existe vraiment dans le code.
+    context:
+      "La facturation entre entreprises se dématérialise : au-delà du PDF envoyé par courriel, une facture électronique porte des données structurées qu'un logiciel peut lire, contrôler et intégrer sans ressaisie. Pour que ces échanges fonctionnent d'un émetteur à l'autre, il faut un langage commun : c'est le rôle de la norme européenne EN 16931, qui décrit le socle d'informations qu'une facture doit contenir et la façon de les représenter. Le format Factur-X en est une déclinaison hybride : un PDF lisible par une personne, auquel est associé un fichier XML exploitable directement par une machine — un seul document sert donc à la fois au lecteur et au système qui le traite. Facturation B2B API est un projet personnel que je développe pour me confronter concrètement à ce sujet : une API REST qui génère et vérifie des factures conformes à cette norme, plutôt qu'à un format que j'aurais défini moi-même.",
+    features: [
+      "Génération d'une facture à partir des données transmises à l'API : émetteur, destinataire, lignes de facturation, montants et taxes.",
+      "Contrôle de conformité de la facture au regard des règles de la norme : présence des champs obligatoires et cohérence des montants.",
+      "Export du résultat dans les formats attendus pour un échange entre entreprises : le document PDF et le fichier XML structuré qui l'accompagne.",
+      "Points d'entrée REST pour créer, consulter et récupérer une facture, avec des réponses d'erreur indiquant ce qui bloque la validation.",
+    ],
+    learnings: [
+      "Partir d'une norme existante plutôt que d'un modèle inventé : lire une spécification écrite pour l'industrie et la traduire en règles applicables dans le code.",
+      "Concevoir une API REST : découper les ressources, choisir les points d'entrée et décider de ce que renvoie chaque réponse, en cas de succès comme d'erreur.",
+      "Structurer des données contraintes : modéliser une facture dont chaque champ a un rôle imposé, et faire tenir ce modèle dans une base de données.",
+      "Mesurer l'écart entre « ça fonctionne » et « c'est conforme » : un document accepté par mon propre code n'est pas pour autant valide au regard de la norme.",
+    ],
     // Projet SANS document pour l'instant.
     // Pour en attacher un : dépose ton PDF dans public/projets/ puis
     // remplace `null` par le nom du fichier, entre guillemets.
