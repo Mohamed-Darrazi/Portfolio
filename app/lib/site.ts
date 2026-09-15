@@ -4,6 +4,8 @@
 //  codée en dur dans les composants.
 // ============================================================
 
+import { isVisible } from "./published";
+
 export const LINKS = {
   github: "https://github.com/Mohamed-Darrazi",
   linkedin: "https://www.linkedin.com/in/mohamed-darrazi-20b901333/",
@@ -24,11 +26,13 @@ export const SKILLS = [
 ];
 
 // Ordre des entrées de la barre de navigation (desktop et mobile).
-export const NAV_ITEMS = [
+// Parcours et Veille n'apparaissent dans le menu que lorsqu'elles ont du
+// contenu réel (voir app/lib/published.ts) — le lien revient tout seul.
+export const NAV_ITEMS: { href: string; label: string }[] = [
   { href: "/", label: "Accueil" },
   { href: "/a-propos", label: "À propos" },
   { href: "/projets", label: "Projets" },
-  { href: "/parcours", label: "Parcours" },
-  { href: "/veille", label: "Veille" },
+  ...(isVisible("parcours") ? [{ href: "/parcours", label: "Parcours" }] : []),
+  ...(isVisible("veille") ? [{ href: "/veille", label: "Veille" }] : []),
   { href: "/contact", label: "Contact" },
-] as const;
+];

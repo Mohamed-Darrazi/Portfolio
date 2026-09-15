@@ -2,13 +2,15 @@ import Link from "next/link";
 import Reveal from "@/app/components/Reveal";
 import SectionTitle from "@/app/components/SectionTitle";
 import { LINKS } from "@/app/lib/site";
+import { isVisible } from "@/app/lib/published";
 
 // Cette page n'a ni état ni effet : c'est un composant serveur. Elle n'envoie
 // donc aucun JavaScript inutile au navigateur — seuls le halo, la navigation
 // mobile et le formulaire de contact tournent côté client.
 
 // Raccourcis vers les autres pages. Les textes décrivent le contenu de
-// chaque page, rien d'autre.
+// chaque page, rien d'autre. Comme dans le menu, Parcours et Veille ne
+// s'affichent que publiées (voir app/lib/published.ts).
 const SHORTCUTS = [
   {
     href: "/a-propos",
@@ -20,16 +22,24 @@ const SHORTCUTS = [
     title: "Projets",
     text: "Ce que j'ai construit, avec le détail de chaque réalisation.",
   },
-  {
-    href: "/parcours",
-    title: "Parcours",
-    text: "Mes étapes de formation et d'expérience, dans l'ordre.",
-  },
-  {
-    href: "/veille",
-    title: "Veille",
-    text: "Ma veille technologique, suivie tout au long du BTS SIO.",
-  },
+  ...(isVisible("parcours")
+    ? [
+        {
+          href: "/parcours",
+          title: "Parcours",
+          text: "Mes étapes de formation et d'expérience, dans l'ordre.",
+        },
+      ]
+    : []),
+  ...(isVisible("veille")
+    ? [
+        {
+          href: "/veille",
+          title: "Veille",
+          text: "Ma veille technologique, suivie tout au long du BTS SIO.",
+        },
+      ]
+    : []),
   {
     href: "/contact",
     title: "Contact",

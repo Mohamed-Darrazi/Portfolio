@@ -7,6 +7,7 @@ import Placeholder from "@/app/components/Placeholder";
 import ProjectDocument from "@/app/components/ProjectDocument";
 import { PROJECTS, getProject } from "@/app/lib/projects";
 import { getDocumentInfo } from "@/app/lib/documents";
+import { SHOW_HINTS } from "@/app/lib/published";
 
 // Génère à la construction du site une page statique par projet.
 // Ajouter un projet dans app/lib/projects.ts suffit : sa page apparaît seule.
@@ -38,6 +39,12 @@ export default async function ProjetPage({
   // `null` = pas de document, ou fichier introuvable.
   const projectDoc = getDocumentInfo(project.pdf);
 
+  // Les sections sans contenu ne s'affichent pas en ligne (en dev, elles
+  // montrent leur encadré d'aide). La numérotation ne compte que les
+  // sections affichées, pour ne jamais montrer « 01 » puis « 03 ».
+  let sectionCount = 0;
+  const num = () => String(++sectionCount).padStart(2, "0");
+
   return (
     <>
       <p className="back-link">
@@ -58,10 +65,14 @@ export default async function ProjetPage({
         </ul>
 
         <dl className="detail-meta">
-          <div>
-            <dt>Période</dt>
-            <dd>{project.period ?? "À compléter"}</dd>
-          </div>
+          {/* La ligne Période n'apparaît que renseignée : pas de
+              « à compléter » sous les yeux d'un visiteur. */}
+          {(project.period || SHOW_HINTS) && (
+            <div>
+              <dt>Période</dt>
+              <dd>{project.period ?? "À compléter (champ period)"}</dd>
+            </div>
+          )}
           <div>
             <dt>Code source</dt>
             <dd>
@@ -82,57 +93,63 @@ export default async function ProjetPage({
         </dl>
       </header>
 
-      <Reveal>
-        <section className="section">
-          <SectionTitle index="01" title="Contexte" />
-          {project.context ? (
-            <div className="about-body">
-              <p>{project.context}</p>
-            </div>
-          ) : (
-            <Placeholder file="app/lib/projects.ts">
-              Pourquoi ce projet, à quel besoin il répond, et dans quel cadre tu
-              l&apos;as mené. Champ <code>context</code> du projet.
-            </Placeholder>
-          )}
-        </section>
-      </Reveal>
+      {(project.context || SHOW_HINTS) && (
+        <Reveal>
+          <section className="section">
+            <SectionTitle index={num()} title="Contexte" />
+            {project.context ? (
+              <div className="about-body">
+                <p>{project.context}</p>
+              </div>
+            ) : (
+              <Placeholder file="app/lib/projects.ts">
+                Pourquoi ce projet, à quel besoin il répond, et dans quel cadre
+                tu l&apos;as mené. Champ <code>context</code> du projet.
+              </Placeholder>
+            )}
+          </section>
+        </Reveal>
+      )}
 
-      <Reveal>
-        <section className="section">
-          <SectionTitle index="02" title="Fonctionnalités" />
-          {project.features && project.features.length > 0 ? (
-            <ul className="bullet-list">
-              {project.features.map((f) => (
-                <li key={f}>{f}</li>
-              ))}
-            </ul>
-          ) : (
-            <Placeholder file="app/lib/projects.ts">
-              Ce que l&apos;application sait faire, point par point. Champ{" "}
-              <code>features</code> du projet.
-            </Placeholder>
-          )}
-        </section>
-      </Reveal>
+      {((project.features && project.features.length > 0) || SHOW_HINTS) && (
+        <Reveal>
+          <section className="section">
+            <SectionTitle index={num()} title="Fonctionnalités" />
+            {project.features && project.features.length > 0 ? (
+              <ul className="bullet-list">
+                {project.features.map((f) => (
+                  <li key={f}>{f}</li>
+                ))}
+              </ul>
+            ) : (
+              <Placeholder file="app/lib/projects.ts">
+                Ce que l&apos;application sait faire, point par point. Champ{" "}
+                <code>features</code> du projet.
+              </Placeholder>
+            )}
+          </section>
+        </Reveal>
+      )}
 
-      <Reveal>
-        <section className="section">
-          <SectionTitle index="03" title="Ce que j'en retire" />
-          {project.learnings && project.learnings.length > 0 ? (
-            <ul className="bullet-list">
-              {project.learnings.map((l) => (
-                <li key={l}>{l}</li>
-              ))}
-            </ul>
-          ) : (
-            <Placeholder file="app/lib/projects.ts">
-              Les difficultés rencontrées et ce que le projet t&apos;a appris.
-              Champ <code>learnings</code> du projet.
-            </Placeholder>
-          )}
-        </section>
-      </Reveal>
+      {((project.learnings && project.learnings.length > 0) || SHOW_HINTS) && (
+        <Reveal>
+          <section className="section">
+            <SectionTitle index={num()} title="Ce que j'en retire" />
+            {project.learnings && project.learnings.length > 0 ? (
+              <ul className="bullet-list">
+                {project.learnings.map((l) => (
+                  <li key={l}>{l}</li>
+                ))}
+              </ul>
+            ) : (
+              <Placeholder file="app/lib/projects.ts">
+                Les difficultés rencontrées et ce que le projet t&apos;a appris.
+                Champ <code>learnings</code> du projet.
+              </Placeholder>
+            )}
+          </section>
+        </Reveal>
+      )}
 
       {/* Section entièrement conditionnelle : sans document associé (ou si le
           fichier est introuvable dans public/projets/), rien n'est rendu du
@@ -140,7 +157,7 @@ export default async function ProjetPage({
       {projectDoc ? (
         <Reveal>
           <section className="section">
-            <SectionTitle index="04" title="Dossier de projet" />
+            <SectionTitle index={num()} title="Dossier de projet" />
             <ProjectDocument document={projectDoc} projectName={project.name} />
           </section>
         </Reveal>

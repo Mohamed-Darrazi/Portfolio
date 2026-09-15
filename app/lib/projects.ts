@@ -82,8 +82,6 @@ export const PROJECTS: Project[] = [
     // Projet SANS document pour l'instant.
     // Pour en attacher un : dépose ton PDF dans public/projets/ puis
     // remplace `null` par le nom du fichier, entre guillemets.
-    // Un fichier de démonstration est déjà fourni si tu veux voir le
-    // rendu tout de suite :  pdf: "exemple-dossier.pdf",
     pdf: null,
   },
 ];

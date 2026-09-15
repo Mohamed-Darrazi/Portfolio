@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import Reveal from "@/app/components/Reveal";
 import PageHeader from "@/app/components/PageHeader";
 import Placeholder from "@/app/components/Placeholder";
 import { TIMELINE } from "@/app/lib/parcours";
+import { isVisible } from "@/app/lib/published";
 
 export const metadata: Metadata = {
   title: "Parcours",
@@ -10,6 +12,11 @@ export const metadata: Metadata = {
 };
 
 export default function ParcoursPage() {
+  // Page encore vide : en ligne, elle répond « page introuvable » (404) et
+  // n'apparaît ni dans le menu ni sur l'accueil. Elle se réactive toute
+  // seule dès que TIMELINE contient une entrée. En dev, elle reste visible.
+  if (!isVisible("parcours")) notFound();
+
   return (
     <>
       <PageHeader

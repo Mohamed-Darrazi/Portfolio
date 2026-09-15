@@ -4,6 +4,7 @@ import PageHeader from "@/app/components/PageHeader";
 import SectionTitle from "@/app/components/SectionTitle";
 import Placeholder from "@/app/components/Placeholder";
 import { SKILLS } from "@/app/lib/site";
+import { SHOW_HINTS } from "@/app/lib/published";
 
 export const metadata: Metadata = {
   title: "À propos",
@@ -58,11 +59,15 @@ export default function AProposPage() {
               applications réellement utilisées.
             </p>
           </div>
-          <Placeholder file="app/a-propos/page.tsx">
-            À compléter avec ton contexte précis : établissement, rythme de
-            l&apos;alternance, période, et le type de missions que tu souhaites
-            mettre en avant — en restant dans ce que tu as le droit de publier.
-          </Placeholder>
+          {/* Rappel visible en dev uniquement : rien ne s'affiche en ligne. */}
+          {SHOW_HINTS && (
+            <Placeholder file="app/a-propos/page.tsx">
+              À compléter avec ton contexte précis : établissement, rythme de
+              l&apos;alternance, période, et le type de missions que tu
+              souhaites mettre en avant — en restant dans ce que tu as le droit
+              de publier.
+            </Placeholder>
+          )}
         </section>
       </Reveal>
 

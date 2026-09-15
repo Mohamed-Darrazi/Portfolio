@@ -9,6 +9,10 @@ export default function Placeholder({
   children: React.ReactNode;
   file?: string;
 }) {
+  // Filet de sécurité : quoi qu'il arrive, cet encadré n'apparaît jamais sur
+  // le site en ligne. Il n'est rendu qu'en local, pendant `npm run dev`.
+  if (process.env.NODE_ENV !== "development") return null;
+
   return (
     <div className="placeholder">
       <span className="placeholder-badge">À compléter</span>
