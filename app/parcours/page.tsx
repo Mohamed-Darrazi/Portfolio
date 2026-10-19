@@ -38,9 +38,21 @@ export default function ParcoursPage() {
                   <div className="timeline-body">
                     <p className="timeline-period">{e.period}</p>
                     <h2 className="timeline-title">{e.title}</h2>
-                    <p className="timeline-place">{e.place}</p>
+                    {e.place ? (
+                      <p className="timeline-place">{e.place}</p>
+                    ) : null}
                     {e.description ? (
                       <p className="timeline-text">{e.description}</p>
+                    ) : null}
+                    {e.points && e.points.length > 0 ? (
+                      <ul className="bullet-list">
+                        {e.points.map((pt) => (
+                          <li key={pt}>{pt}</li>
+                        ))}
+                      </ul>
+                    ) : null}
+                    {e.after ? (
+                      <p className="timeline-text">{e.after}</p>
                     ) : null}
                     {e.tags && e.tags.length > 0 ? (
                       <ul className="project-stack">

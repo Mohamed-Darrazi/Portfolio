@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { NAV_ITEMS } from "@/app/lib/site";
+import type { NavItem } from "@/app/lib/nav";
 
 // Un lien est « actif » sur sa propre page et sur ses sous-pages.
 // Exemple : /projets/facturation-b2b-api garde « Projets » en surbrillance.
@@ -13,7 +13,10 @@ function isActive(pathname: string, href: string) {
   return pathname === href || pathname.startsWith(`${href}/`);
 }
 
-export default function SiteNav() {
+// Les entrées arrivent toutes prêtes de app/layout.tsx (calculées côté
+// serveur dans app/lib/nav.ts) : ce composant client se contente de les
+// afficher et de gérer le menu mobile.
+export default function SiteNav({ items }: { items: NavItem[] }) {
   const pathname = usePathname();
   // On mémorise sur QUELLE page le menu a été ouvert, plutôt qu'un simple
   // booléen. Dès que `pathname` change, `open` redevient false tout seul :
@@ -39,7 +42,7 @@ export default function SiteNav() {
       </Link>
 
       <ul className="nav-links">
-        {NAV_ITEMS.map((item) => (
+        {items.map((item) => (
           <li key={item.href}>
             <Link
               href={item.href}
@@ -72,7 +75,7 @@ export default function SiteNav() {
         className={`nav-mobile ${open ? "nav-mobile-open" : ""}`}
         hidden={!open}
       >
-        {NAV_ITEMS.map((item) => (
+        {items.map((item) => (
           <li key={item.href}>
             <Link
               href={item.href}

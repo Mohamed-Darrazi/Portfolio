@@ -3,6 +3,7 @@ import Reveal from "@/app/components/Reveal";
 import SectionTitle from "@/app/components/SectionTitle";
 import { LINKS } from "@/app/lib/site";
 import { isVisible } from "@/app/lib/published";
+import { getCvInfo } from "@/app/lib/documents";
 
 // Cette page n'a ni état ni effet : c'est un composant serveur. Elle n'envoie
 // donc aucun JavaScript inutile au navigateur — seuls le halo, la navigation
@@ -16,6 +17,11 @@ const SHORTCUTS = [
     href: "/a-propos",
     title: "À propos",
     text: "Qui je suis, ma formation et ma façon de travailler.",
+  },
+  {
+    href: "/bts-sio",
+    title: "Le BTS SIO",
+    text: "Le diplôme que je prépare : ses deux options et ses blocs de compétences.",
   },
   {
     href: "/projets",
@@ -58,13 +64,14 @@ export default function Home() {
           <div className="about-body">
             <p>
               Je suis étudiant en deuxième année de BTS SIO, option SLAM, en
-              alternance. Au quotidien, je développe et maintiens des
-              applications de gestion pour le secteur de la santé.
+              alternance chez Logemed. Au quotidien, je développe et
+              maintiens des applications de gestion pour le secteur de la
+              santé.
             </p>
           </div>
           <p className="section-more">
             <Link className="text-link" href="/a-propos">
-              En savoir plus sur mon parcours →
+              En savoir plus sur moi →
             </Link>
           </p>
         </section>
@@ -94,6 +101,8 @@ export default function Home() {
 
 function Hero() {
   const name = "Mohamed Darrazi";
+  // Le bouton CV n'existe que si le PDF est bien dans public/.
+  const cv = getCvInfo();
   return (
     <header className="hero">
       <p className="hero-eyebrow">Portfolio</p>
@@ -113,13 +122,18 @@ function Hero() {
         ))}
       </h1>
       <p className="hero-role">
-        Étudiant BTS SIO SLAM · Alternant en développement
+        Étudiant BTS SIO SLAM · Alternant chez Logemed
       </p>
       <p className="hero-tag">Développement &amp; cybersécurité</p>
       <div className="hero-cta">
         <Link className="btn btn-primary" href="/projets">
           Voir mes projets
         </Link>
+        {cv ? (
+          <a className="btn btn-primary" href={cv.url} download>
+            Télécharger mon CV
+          </a>
+        ) : null}
         <Link className="btn btn-ghost" href="/contact">
           Me contacter
         </Link>

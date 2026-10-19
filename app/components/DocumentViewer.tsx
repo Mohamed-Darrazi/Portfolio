@@ -3,7 +3,8 @@
 import { useState } from "react";
 import type { DocumentInfo } from "@/app/lib/documents";
 
-// Bloc « Dossier de projet » : consultation dans la page + téléchargement.
+// Bloc document PDF : consultation dans la page + téléchargement.
+// Sert aux dossiers de projet et au CV.
 //
 // L'aperçu n'est PAS monté au chargement : l'iframe n'apparaît qu'au clic sur
 // « Afficher l'aperçu ». Le PDF n'est donc téléchargé que si le visiteur le
@@ -14,15 +15,18 @@ import type { DocumentInfo } from "@/app/lib/documents";
 // iframe (Chrome Android le télécharge, iOS n'en montre que la 1re page). Le
 // bouton d'aperçu et l'iframe y sont donc masqués en CSS, remplacés par
 // « Ouvrir le document ». Voir la media query dans app/globals.css.
-export default function ProjectDocument({
+export default function DocumentViewer({
   document,
-  projectName,
+  title,
+  downloadLabel,
 }: {
   document: DocumentInfo;
-  projectName: string;
+  /** Nom affiché sur la carte, ex. « Dossier de projet — Mon projet ». */
+  title: string;
+  /** Texte du bouton de téléchargement. */
+  downloadLabel: string;
 }) {
   const [open, setOpen] = useState(false);
-  const label = `Dossier de projet — ${projectName}`;
 
   return (
     <div className="doc-card">
@@ -31,7 +35,7 @@ export default function ProjectDocument({
           PDF
         </span>
         <div>
-          <p className="doc-name">{label}</p>
+          <p className="doc-name">{title}</p>
           <p className="doc-sub">
             {document.fileName} · {document.sizeLabel}
           </p>
@@ -60,7 +64,7 @@ export default function ProjectDocument({
         </a>
 
         <a className="btn btn-primary" href={document.url} download>
-          Télécharger le dossier (PDF)
+          {downloadLabel}
         </a>
       </div>
 
@@ -69,7 +73,7 @@ export default function ProjectDocument({
           <iframe
             // #view=FitH : le document s'ouvre ajusté à la largeur.
             src={`${document.url}#view=FitH`}
-            title={label}
+            title={title}
             loading="lazy"
           />
         </div>

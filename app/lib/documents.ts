@@ -13,6 +13,9 @@ import { join } from "node:path";
 /** Dossier de public/ dans lequel on range les PDF de projets. */
 export const DOCUMENTS_DIR = "projets";
 
+/** Nom du CV, déposé à la racine de public/. */
+export const CV_FILE = "cv-mohamed-darrazi.pdf";
+
 export type DocumentInfo = {
   /** Adresse publique du fichier, ex. /projets/mon-dossier.pdf */
   url: string;
@@ -30,6 +33,24 @@ function formatSize(bytes: number): string {
 }
 
 /**
+ * Infos d'un fichier de public/, ou `null` s'il n'existe pas.
+ * @param publicPath chemin relatif à public/, ex. "projets/mon-dossier.pdf"
+ */
+function getPublicFileInfo(publicPath: string): DocumentInfo | null {
+  try {
+    const stats = statSync(join(process.cwd(), "public", publicPath));
+    if (!stats.isFile()) return null;
+    return {
+      url: `/${publicPath}`,
+      fileName: publicPath.split("/").pop() ?? publicPath,
+      sizeLabel: formatSize(stats.size),
+    };
+  } catch {
+    return null;
+  }
+}
+
+/**
  * Résout le document d'un projet.
  * @param fileName nom du fichier tel qu'écrit dans app/lib/projects.ts,
  *                 ou `null` si le projet n'a pas de document.
@@ -39,22 +60,23 @@ export function getDocumentInfo(fileName: string | null): DocumentInfo | null {
   if (!fileName) return null;
 
   const publicPath = `${DOCUMENTS_DIR}/${fileName}`;
+  const info = getPublicFileInfo(publicPath);
 
-  try {
-    const stats = statSync(join(process.cwd(), "public", publicPath));
-    if (!stats.isFile()) return null;
-    return {
-      url: `/${publicPath}`,
-      fileName,
-      sizeLabel: formatSize(stats.size),
-    };
-  } catch {
+  if (!info) {
     // Averti au build sans le faire échouer : le site reste publiable,
     // la section document est simplement omise.
     console.warn(
       `[projets] Document introuvable : public/${publicPath}. ` +
         `La section « Dossier de projet » ne sera pas affichée.`
     );
-    return null;
   }
+  return info;
+}
+
+/**
+ * Le CV, ou `null` s'il n'est pas déposé dans public/. Dans ce cas, la page
+ * /cv, son lien dans le menu et les boutons de téléchargement disparaissent.
+ */
+export function getCvInfo(): DocumentInfo | null {
+  return getPublicFileInfo(CV_FILE);
 }

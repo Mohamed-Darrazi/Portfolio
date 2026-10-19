@@ -3,6 +3,7 @@ import Reveal from "@/app/components/Reveal";
 import PageHeader from "@/app/components/PageHeader";
 import ContactForm from "@/app/components/ContactForm";
 import { LINKS } from "@/app/lib/site";
+import { getCvInfo } from "@/app/lib/documents";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -11,6 +12,9 @@ export const metadata: Metadata = {
 };
 
 export default function ContactPage() {
+  // Le bouton CV n'existe que si le PDF est bien dans public/.
+  const cv = getCvInfo();
+
   return (
     <>
       <PageHeader
@@ -45,6 +49,13 @@ export default function ContactPage() {
               >
                 GitHub →
               </a>
+              {cv ? (
+                <p className="section-more">
+                  <a className="btn btn-primary" href={cv.url} download>
+                    Télécharger mon CV
+                  </a>
+                </p>
+              ) : null}
             </div>
           </div>
         </section>

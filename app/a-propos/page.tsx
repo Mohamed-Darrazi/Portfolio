@@ -2,9 +2,7 @@ import type { Metadata } from "next";
 import Reveal from "@/app/components/Reveal";
 import PageHeader from "@/app/components/PageHeader";
 import SectionTitle from "@/app/components/SectionTitle";
-import Placeholder from "@/app/components/Placeholder";
 import { SKILLS } from "@/app/lib/site";
-import { SHOW_HINTS } from "@/app/lib/published";
 
 export const metadata: Metadata = {
   title: "À propos",
@@ -18,7 +16,7 @@ export default function AProposPage() {
       <PageHeader
         eyebrow="À propos"
         title="Qui je suis"
-        lead="Étudiant BTS SIO SLAM en alternance, orienté développement d'applications."
+        lead="Étudiant BTS SIO SLAM, alternant chez Logemed, orienté développement d'applications."
       />
 
       <Reveal>
@@ -27,8 +25,9 @@ export default function AProposPage() {
           <div className="about-body">
             <p>
               Je suis étudiant en deuxième année de BTS SIO, option SLAM, en
-              alternance. Au quotidien, je développe et maintiens des
-              applications de gestion pour le secteur de la santé.
+              alternance chez Logemed. Au quotidien, je développe et
+              maintiens des applications de gestion pour le secteur de la
+              santé.
             </p>
             <p>
               J&apos;aime comprendre un problème dans le détail avant
@@ -58,16 +57,31 @@ export default function AProposPage() {
               j&apos;apprends en cours, je le mets en pratique sur des
               applications réellement utilisées.
             </p>
+            <p>
+              Chez Logemed, mes missions sont le développement et la
+              maintenance d&apos;applications de gestion pour le secteur de la
+              santé, ainsi que le traitement des demandes des établissements
+              utilisateurs.
+            </p>
           </div>
-          {/* Rappel visible en dev uniquement : rien ne s'affiche en ligne. */}
-          {SHOW_HINTS && (
-            <Placeholder file="app/a-propos/page.tsx">
-              À compléter avec ton contexte précis : établissement, rythme de
-              l&apos;alternance, période, et le type de missions que tu
-              souhaites mettre en avant — en restant dans ce que tu as le droit
-              de publier.
-            </Placeholder>
-          )}
+          <dl className="detail-meta">
+            <div>
+              <dt>Établissement</dt>
+              <dd>Lycée Bonaparte, Toulon</dd>
+            </div>
+            <div>
+              <dt>Entreprise</dt>
+              <dd>Logemed</dd>
+            </div>
+            <div>
+              <dt>Chez Logemed depuis</dt>
+              <dd>novembre 2025</dd>
+            </div>
+            <div>
+              <dt>Rythme</dt>
+              <dd>2 semaines en entreprise / 2 semaines en formation</dd>
+            </div>
+          </dl>
         </section>
       </Reveal>
 

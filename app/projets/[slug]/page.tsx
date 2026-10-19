@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import Reveal from "@/app/components/Reveal";
 import SectionTitle from "@/app/components/SectionTitle";
 import Placeholder from "@/app/components/Placeholder";
-import ProjectDocument from "@/app/components/ProjectDocument";
+import DocumentViewer from "@/app/components/DocumentViewer";
 import { PROJECTS, getProject } from "@/app/lib/projects";
 import { getDocumentInfo } from "@/app/lib/documents";
 import { SHOW_HINTS } from "@/app/lib/published";
@@ -158,7 +158,11 @@ export default async function ProjetPage({
         <Reveal>
           <section className="section">
             <SectionTitle index={num()} title="Dossier de projet" />
-            <ProjectDocument document={projectDoc} projectName={project.name} />
+            <DocumentViewer
+              document={projectDoc}
+              title={`Dossier de projet — ${project.name}`}
+              downloadLabel="Télécharger le dossier (PDF)"
+            />
           </section>
         </Reveal>
       ) : null}

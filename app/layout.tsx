@@ -4,6 +4,7 @@ import "./globals.css";
 import Atmosphere from "@/app/components/Atmosphere";
 import SiteNav from "@/app/components/SiteNav";
 import Footer from "@/app/components/Footer";
+import { getNavItems } from "@/app/lib/nav";
 
 // Polices auto-hébergées (fichiers dans app/fonts/) : le build ne dépend
 // plus des serveurs de Google Fonts, qui peuvent tomber en panne.
@@ -62,7 +63,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body className="min-h-full flex flex-col">
         <Atmosphere />
         <div className="page">
-          <SiteNav />
+          <SiteNav items={getNavItems()} />
           <main className="page-main">{children}</main>
           <Footer />
         </div>
