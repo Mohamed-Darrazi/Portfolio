@@ -2,7 +2,7 @@
 //  MENU DU SITE
 //  Calculé côté serveur, au moment du build, puis transmis à la
 //  barre de navigation par app/layout.tsx. Une entrée n'apparaît
-//  que si sa page a du contenu (Parcours, Veille : voir
+//  que si sa page a du contenu (Projets, Parcours, Veille : voir
 //  published.ts) ou si son fichier existe (CV) — jamais de lien
 //  vers une page vide ou morte.
 //  (Ce module lit le disque : il ne doit pas être importé par un
@@ -20,7 +20,7 @@ export function getNavItems(): NavItem[] {
     { href: "/", label: "Accueil" },
     { href: "/a-propos", label: "À propos" },
     { href: "/bts-sio", label: "BTS SIO" },
-    { href: "/projets", label: "Projets" },
+    ...(isVisible("projets") ? [{ href: "/projets", label: "Projets" }] : []),
     ...(isVisible("parcours") ? [{ href: "/parcours", label: "Parcours" }] : []),
     ...(isVisible("veille") ? [{ href: "/veille", label: "Veille" }] : []),
     ...(getCvInfo() ? [{ href: "/cv", label: "CV" }] : []),

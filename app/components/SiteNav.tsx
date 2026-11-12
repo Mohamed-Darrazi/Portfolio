@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import type { NavItem } from "@/app/lib/nav";
 
 // Un lien est « actif » sur sa propre page et sur ses sous-pages.
-// Exemple : /projets/facturation-b2b-api garde « Projets » en surbrillance.
+// Exemple : /projets/mon-projet garde « Projets » en surbrillance.
 // L'accueil est traité à part, sinon "/" serait actif partout.
 function isActive(pathname: string, href: string) {
   if (href === "/") return pathname === "/";

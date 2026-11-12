@@ -10,8 +10,8 @@ import { getCvInfo } from "@/app/lib/documents";
 // mobile et le formulaire de contact tournent côté client.
 
 // Raccourcis vers les autres pages. Les textes décrivent le contenu de
-// chaque page, rien d'autre. Comme dans le menu, Parcours et Veille ne
-// s'affichent que publiées (voir app/lib/published.ts).
+// chaque page, rien d'autre. Comme dans le menu, Projets, Parcours et
+// Veille ne s'affichent que publiées (voir app/lib/published.ts).
 const SHORTCUTS = [
   {
     href: "/a-propos",
@@ -23,11 +23,15 @@ const SHORTCUTS = [
     title: "Le BTS SIO",
     text: "Le diplôme que je prépare : ses deux options et ses blocs de compétences.",
   },
-  {
-    href: "/projets",
-    title: "Projets",
-    text: "Ce que j'ai construit, avec le détail de chaque réalisation.",
-  },
+  ...(isVisible("projets")
+    ? [
+        {
+          href: "/projets",
+          title: "Projets",
+          text: "Ce que j'ai construit, avec le détail de chaque réalisation.",
+        },
+      ]
+    : []),
   ...(isVisible("parcours")
     ? [
         {
@@ -126,9 +130,12 @@ function Hero() {
       </p>
       <p className="hero-tag">Développement &amp; cybersécurité</p>
       <div className="hero-cta">
-        <Link className="btn btn-primary" href="/projets">
-          Voir mes projets
-        </Link>
+        {/* Jamais de bouton vers une page masquée (voir published.ts). */}
+        {isVisible("projets") ? (
+          <Link className="btn btn-primary" href="/projets">
+            Voir mes projets
+          </Link>
+        ) : null}
         {cv ? (
           <a className="btn btn-primary" href={cv.url} download>
             Télécharger mon CV
