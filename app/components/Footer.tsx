@@ -6,7 +6,6 @@ export default function Footer() {
   return (
     <footer className="footer">
       <span>© {new Date().getFullYear()} Mohamed Darrazi</span>
-      <span className="footer-note">Construit avec Next.js</span>
     </footer>
   );
 }
