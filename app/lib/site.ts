@@ -18,7 +18,7 @@ export const SKILLS = [
     group: "Langages",
     items: ["C#", "PHP", "Java", "Python", "JavaScript", "TypeScript"],
   },
-  { group: "Bases de données", items: ["SQL Server", "MySQL"] },
+  { group: "Bases de données", items: ["MySQL / MariaDB"] },
   {
     group: "Frameworks & outils",
     items: ["ASP.NET Core", "Flask", "WinDev", "Next.js", "Git"],
