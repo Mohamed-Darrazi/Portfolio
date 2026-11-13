@@ -657,8 +657,8 @@ body {
   transform: rotate(-45deg);
 }
 
-/* Panneau deroulant mobile. Jamais affiche au-dessus de 680px :
-   la regle qui l'ouvre vit dans la media query tout en bas. */
+/* Panneau deroulant mobile. Jamais affiche au-dessus de 900px :
+   la regle qui l'ouvre vit dans les media queries tout en bas. */
 .nav-mobile {
   display: none;
   list-style: none;
@@ -1178,5 +1178,100 @@ body {
   .doc-actions .btn {
     width: 100%;
     text-align: center;
+  }
+}
+
+/* --- Icônes de contact (barre du haut) -------------------------
+   E-mail, GitHub, LinkedIn : toujours visibles, à droite du menu sur
+   grand écran, et à gauche du burger sur mobile. Couleur : l'accent
+   lavande du site ; survol : le même fond lavande que le menu mobile. */
+.nav-links {
+  margin-left: auto;
+}
+.nav-social {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  list-style: none;
+  padding-left: 14px;
+  border-left: 1px solid var(--line);
+}
+.nav-social a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  color: var(--lav);
+  transition: background 0.2s, transform 0.2s;
+}
+.nav-social a:hover {
+  background: rgba(185, 166, 255, 0.09);
+  transform: translateY(-1px);
+}
+.nav-social a:focus-visible {
+  outline: 1px solid var(--lav);
+  outline-offset: 2px;
+}
+.nav-social svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* --- Formulaire de contact : boutons et piège à robots ---------- */
+.form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+/* Même hauteur pour les deux boutons : le bouton plein reçoit une bordure
+   invisible de la même épaisseur que celle du bouton fantôme. */
+.form-actions .btn-submit {
+  border: 1px solid transparent;
+}
+/* Champ _gotcha : caché par une classe, comme le recommande Formspree. */
+.form-honeypot {
+  display: none;
+}
+
+/* --- Page Mentions légales : date de mise à jour --------------- */
+.legal-update {
+  margin-top: 40px;
+  font-family: var(--font-space-grotesk), sans-serif;
+  font-size: 13px;
+  color: var(--text-dim);
+}
+
+/* --- Lien « Mentions légales » du pied de page ------------------ */
+.footer-link {
+  color: var(--text-dim);
+  text-decoration: none;
+  transition: color 0.25s;
+}
+.footer-link:hover {
+  color: var(--lav);
+}
+
+/* Sous 900px, le menu complet + les 3 icônes ne tiennent plus sur une
+   ligne (mesuré : il faut ~710px de barre avec 6 entrées, ~790px avec
+   Projets). Le menu passe donc en burger dès 900px, et les icônes se
+   calent juste à sa gauche, sans le trait de séparation. */
+@media (max-width: 900px) {
+  .nav-links {
+    display: none;
+  }
+  .nav-toggle {
+    display: inline-flex;
+  }
+  .nav-mobile-open {
+    display: flex;
+  }
+  .nav-social {
+    margin-left: auto;
+    padding-left: 0;
+    border-left: none;
+    gap: 2px;
   }
 }

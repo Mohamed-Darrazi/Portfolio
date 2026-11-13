@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import type { NavItem } from "@/app/lib/nav";
+import ContactIcons from "@/app/components/ContactIcons";
 
 // Un lien est « actif » sur sa propre page et sur ses sous-pages.
 // Exemple : /projets/mon-projet garde « Projets » en surbrillance.
@@ -54,6 +55,9 @@ export default function SiteNav({ items }: { items: NavItem[] }) {
           </li>
         ))}
       </ul>
+
+      {/* Toujours visibles, y compris sur mobile (à gauche du burger). */}
+      <ContactIcons />
 
       <button
         type="button"

@@ -39,7 +39,23 @@ export default function ContactForm() {
   }
 
   return (
-    <form className="contact-form" onSubmit={handleSubmit}>
+    <form
+      className="contact-form"
+      onSubmit={handleSubmit}
+      onReset={() => setStatus("idle")}
+    >
+      {/* Piège à robots (« honeypot ») : champ invisible pour un humain.
+          Si un robot le remplit, Formspree ignore l'envoi. Nom reconnu par
+          Formspree : _gotcha. Caché par une classe CSS, comme le recommande
+          sa documentation, et hors de la navigation au clavier. */}
+      <input
+        className="form-honeypot"
+        type="text"
+        name="_gotcha"
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden="true"
+      />
       <label className="field">
         <span className="field-label">Nom</span>
         <input
@@ -60,6 +76,13 @@ export default function ContactForm() {
           autoComplete="email"
         />
       </label>
+      {/* Facultatif. Nommé « sujet » et non « subject » : chez Formspree,
+          « subject » remplace l'objet de l'e-mail reçu, et sa documentation
+          le déconseille pour un texte libre. */}
+      <label className="field">
+        <span className="field-label">Sujet (facultatif)</span>
+        <input className="field-input" type="text" name="sujet" />
+      </label>
       <label className="field">
         <span className="field-label">Message</span>
         <textarea
@@ -69,13 +92,22 @@ export default function ContactForm() {
           required
         />
       </label>
-      <button
-        className="btn btn-primary btn-submit"
-        type="submit"
-        disabled={status === "sending"}
-      >
-        {status === "sending" ? "Envoi…" : "Envoyer"}
-      </button>
+      <div className="form-actions">
+        <button
+          className="btn btn-primary btn-submit"
+          type="submit"
+          disabled={status === "sending"}
+        >
+          {status === "sending" ? "Envoi…" : "Envoyer"}
+        </button>
+        <button
+          className="btn btn-ghost"
+          type="reset"
+          disabled={status === "sending"}
+        >
+          Réinitialiser
+        </button>
+      </div>
       {status === "error" && (
         <p className="form-error">
           L&apos;envoi a échoué. Réessayez, ou écrivez-moi via LinkedIn.

@@ -6,6 +6,7 @@
 // ============================================================
 
 export const LINKS = {
+  email: "mohamed.darrazi83.sio@gmail.com",
   github: "https://github.com/Mohamed-Darrazi",
   linkedin: "https://www.linkedin.com/in/mohamed-darrazi-20b901333/",
 };
